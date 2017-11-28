@@ -8,7 +8,6 @@ var outPath = path.join(__dirname, './dist');
 
 // plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: sourcePath,
@@ -47,27 +46,6 @@ module.exports = {
             'awesome-typescript-loader'
           ]
       },
-      // css 
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              query: {
-                modules: true,
-                sourceMap: !isProduction,
-                importLoaders: 1,
-                localIdentName: '[local]__[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'postcss-loader'
-            }
-          ]
-        })
-      },
       // static assets 
       { test: /\.html$/, use: 'html-loader' },
       { test: /\.png$/, use: 'url-loader?limit=10000' },
@@ -79,28 +57,12 @@ module.exports = {
     new webpack.ProvidePlugin({
         Promise: 'es6-promise-promise', // works as expected
     }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: sourcePath,
-        postcss: [
-          require('postcss-import')({ addDependencyTo: webpack }),
-          require('postcss-url')(),
-          require('postcss-cssnext')(),
-          require('postcss-reporter')(),
-          require('postcss-browser-reporter')({ disabled: isProduction }),
-        ]
-      }
-    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.bundle.js',
       minChunks: Infinity
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new ExtractTextPlugin({
-      filename: 'styles.css',
-      disable: !isProduction
-    }),
     new HtmlWebpackPlugin({
       template: 'assets/index.html'
     }),
