@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000 --open",
-    "build": "webpack --progress --colors --define process.env.NODE_ENV='production' && cp -f assets/images/favicon.ico dist && cd dist && zip ../dist.zip ./* && cd .."
+    "build": "NODE_ENV=production webpack --progress --colors && cp -f assets/images/favicon.ico dist && cd dist && zip ../dist.zip ./* && cd .."
   },
   "keywords": [
     "typescript",

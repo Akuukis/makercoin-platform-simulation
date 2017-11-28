@@ -19,7 +19,6 @@ import ProjectRow from './ProjectRow';
 export type ProjectsClasses = 'root';
 const styles: StyleRulesCallback<ProjectsClasses> = (theme) => ({
   root: {
-    padding: '0.5em',
   }
 });
 
@@ -33,35 +32,31 @@ class Projects extends ComponentRouted<IProjectsProps, ProjectsClasses> {
 
   render() {
     return (
-      <Grid container spacing={16} className={this.props.classes.root}>
-        <Grid item xs={12}>
-          <Paper>
-            <Typography align='center' type='headline'>Projects</Typography>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>{'name'}</TableCell>
-                  <TableCell>{'birthTick'}</TableCell>
-                  <TableCell>{'maturityTick'}</TableCell>
-                  <TableCell>{'progress'}</TableCell>
-                  <TableCell>{'maturity'}</TableCell>
-                  <TableCell>{'discount'}</TableCell>
-                  <TableCell>{'size'}</TableCell>
-                  <TableCell>{'poisoned'}</TableCell>
-                  <TableCell>{'matured'}</TableCell>
-                  <TableCell>{'value'}</TableCell>
-                  <TableCell>{'status'}</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {[...this.case.projects].map((project)=>(
-                    <ProjectRow key={project.name} project={project} />
-                  ))}
-              </TableBody>
-            </Table>
-          </Paper>
-        </Grid>
-      </Grid> 
+      <Paper>
+        <Typography align='center' type='headline'>Projects</Typography>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>{'name'}</TableCell>
+              <TableCell>{'birthTick'}</TableCell>
+              <TableCell>{'maturityTick'}</TableCell>
+              <TableCell>{'progress'}</TableCell>
+              <TableCell>{'maturity'}</TableCell>
+              <TableCell>{'discount'}</TableCell>
+              <TableCell>{'size'}</TableCell>
+              <TableCell>{'poisoned'}</TableCell>
+              <TableCell>{'matured'}</TableCell>
+              <TableCell>{'value'}</TableCell>
+              <TableCell>{'status'}</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {[...this.case.projects].map((project)=>(
+                <ProjectRow key={project.name} project={project} />
+              ))}
+          </TableBody>
+        </Table>
+      </Paper>
     );
   }
 

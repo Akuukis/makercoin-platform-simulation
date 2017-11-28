@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 // variables
-var isProduction = process.argv.indexOf('-p') >= 0;
+var isProduction = process.env.NODE_ENV === 'production';
 var sourcePath = path.join(__dirname, './src');
 var outPath = path.join(__dirname, './dist');
 
@@ -25,7 +25,7 @@ module.exports = {
   output: {
     path: outPath,
     filename: 'bundle.js',
-    publicPath: isProduction ? '' : '/'
+    publicPath: isProduction ? '' : ''
   },
   target: 'web',
   resolve: {
@@ -67,6 +67,9 @@ module.exports = {
       template: 'assets/index.html'
     }),
     new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
+    }),
   ],
   devServer: {
     contentBase: sourcePath,
