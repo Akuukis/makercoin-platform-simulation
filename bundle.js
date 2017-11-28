@@ -76913,17 +76913,15 @@ ProjectRow = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__("../node_modules/mobx-react/index.module.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__("../node_modules/material-ui/styles/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Grid__ = __webpack_require__("../node_modules/material-ui/Grid/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Paper__ = __webpack_require__("../node_modules/material-ui/Paper/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Typography__ = __webpack_require__("../node_modules/material-ui/Typography/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Table__ = __webpack_require__("../node_modules/material-ui/Table/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common___ = __webpack_require__("./app/common/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_index__ = __webpack_require__("./app/constants/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ProjectRow__ = __webpack_require__("./app/containers/Projects/ProjectRow.tsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Paper__ = __webpack_require__("../node_modules/material-ui/Paper/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Paper__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Typography__ = __webpack_require__("../node_modules/material-ui/Typography/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Typography___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Typography__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Table__ = __webpack_require__("../node_modules/material-ui/Table/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common___ = __webpack_require__("./app/common/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_index__ = __webpack_require__("./app/constants/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ProjectRow__ = __webpack_require__("./app/containers/Projects/ProjectRow.tsx");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -76939,41 +76937,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
 const styles = (theme) => ({
     root: {
         padding: '0.5em',
     }
 });
-let Projects = class Projects extends __WEBPACK_IMPORTED_MODULE_7__common___["a" /* ComponentRouted */] {
+let Projects = class Projects extends __WEBPACK_IMPORTED_MODULE_6__common___["a" /* ComponentRouted */] {
     constructor() {
         super(...arguments);
-        this.case = this.props[__WEBPACK_IMPORTED_MODULE_8__constants_index__["a" /* STORE */].CASE];
+        this.case = this.props[__WEBPACK_IMPORTED_MODULE_7__constants_index__["a" /* STORE */].CASE];
     }
     render() {
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { container: true, spacing: 16, className: this.props.classes.root },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12 },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default.a, null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { align: 'center', type: 'headline' }, "Projects"),
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table___default.a, null,
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableHead"], null,
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableRow"], null,
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'name'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'birthTick'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'maturityTick'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'progress'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'maturity'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'discount'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'size'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'poisoned'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'matured'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'value'),
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableCell"], null, 'status'))),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Table__["TableBody"], null, [...this.case.projects].map((project) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_9__ProjectRow__["a" /* default */], { key: project.name, project: project })))))))));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Paper___default.a, null,
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Typography___default.a, { align: 'center', type: 'headline' }, "Projects"),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table___default.a, null,
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableHead"], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableRow"], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'name'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'birthTick'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'maturityTick'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'progress'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'maturity'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'discount'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'size'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'poisoned'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'matured'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'value'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], null, 'status'))),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableBody"], null, [...this.case.projects].map((project) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__ProjectRow__["a" /* default */], { key: project.name, project: project })))))));
     }
 };
 Projects = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["inject"])(__WEBPACK_IMPORTED_MODULE_8__constants_index__["a" /* STORE */].CASE),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["inject"])(__WEBPACK_IMPORTED_MODULE_7__constants_index__["a" /* STORE */].CASE),
     __WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"]
 ], Projects);
 ;
