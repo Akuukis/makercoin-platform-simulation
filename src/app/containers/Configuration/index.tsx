@@ -113,8 +113,8 @@ class Configuration extends ComponentRouted<IConfigurationProps, ConfigurationCl
             <Typography align='center' type='headline'>ICO Size</Typography>
             <Grid container spacing={0} className={this.props.classes.root}>
               {this.config.idoSizeDist.map((ido)=>(
-                <Grid item xs={12}>
-                  <IdoSize key={ido.value} ido={ido} />
+                <Grid item xs={12} key={ido.value}>
+                  <IdoSize ido={ido} />
                 </Grid>
               ))}
             </Grid>

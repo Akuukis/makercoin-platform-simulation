@@ -7,11 +7,15 @@ export class TimeStore {
   @observable private _tick: number = 0;
   @computed public get tick() { return this._tick; }
 
+  private _resetSubject: Subject<void> = new Subject();
+  public get reset$() { return this._resetSubject.asObservable(); }
+
   private subscription: Subscription;
   private _timerSubject: Subject<Observable<number>> = new Subject();
   private _stepperSubject: Subject<void> = new Subject();
   private _tick$: Observable<number> 
   public get tick$() { return this._tick$; }
+
 
   constructor() {
     const _tick$ = Observable.merge(
@@ -42,6 +46,7 @@ export class TimeStore {
 
   @action public reset() {
     this._tick = 0;
+    this._resetSubject.next(undefined);
   }
 
 }

@@ -2,6 +2,7 @@ export enum STORE {
   ROUTER = 'storeRouter',
   TIME = 'storeTime',
   CONFIG = 'storeConfig',
+  CASE = 'storeCase',
 } 
 
 export enum NAVIGATION {
@@ -25,4 +26,10 @@ export enum MATURITY {
   week30 = 'week30',
   week40 = 'week40',
   week50 = 'week50'
+}
+
+export enum PROJECT_STATUS {
+  ONGOING = 'ongoing',
+  DEFAULTED = 'defaulted',
+  EXITED = 'exited',
 }

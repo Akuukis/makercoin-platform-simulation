@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/chance@^0.7.35":
+  version "0.7.35"
+  resolved "http://npm.factury.co/@types%2fchance/-/chance-0.7.35.tgz#e76f3441b7763476c58eb7dc32f62da3d8ea547e"
+
 "@types/history@^3":
   version "3.2.2"
   resolved "http://npm.factury.co/@types%2fhistory/-/history-3.2.2.tgz#b6affa240cb10b5f841c6443d8a24d7f3fc8bb0c"
@@ -634,6 +638,10 @@ chalk@^2.3.0:
     ansi-styles "^3.1.0"
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
+
+chance@^1.0.12:
+  version "1.0.12"
+  resolved "http://npm.factury.co/chance/-/chance-1.0.12.tgz#6764c9cb7b4f34856fb780d07f0e17a6601c6c08"
 
 change-emitter@^0.1.2:
   version "0.1.6"
@@ -3815,6 +3823,10 @@ postcss@^6.0.1:
     chalk "^2.3.0"
     source-map "^0.6.1"
     supports-color "^4.4.0"
+
+prando@^3.0.1:
+  version "3.0.1"
+  resolved "http://npm.factury.co/prando/-/prando-3.0.1.tgz#8fa6d856277fad738e50f3e550b702380ad52d6e"
 
 prepend-http@^1.0.0:
   version "1.0.4"

@@ -17,6 +17,7 @@ export interface IIdoSize extends IValueDistribution {
 export class ConfigStore {
   @observable projectDist: IProjectDiscount[];
   @observable idoSizeDist: IIdoSize[];
+  @observable maturities: Record<MATURITY, number>;
   @observable defaultProb: number;
   @observable spawnRate: number;
   @observable operatingFee: number;
@@ -57,7 +58,15 @@ export class ConfigStore {
       {weight:  2, value:  500000},
       {weight:  1, value: 1000000},
     ]
-    this.defaultProb = 0.07;
+    this.maturities = {
+      [MATURITY.week00]: 0,
+      [MATURITY.week10]: 10,
+      [MATURITY.week20]: 20,
+      [MATURITY.week30]: 30,
+      [MATURITY.week40]: 40,
+      [MATURITY.week50]: 50,
+    }
+    this.defaultProb = 0.007;
     this.spawnRate = 1;
     this.operatingFee = 0.02;
     this.exchangeFee = 0.00;
