@@ -76938,9 +76938,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 const styles = (theme) => ({
-    root: {
-        padding: '0.5em',
-    }
+    root: {}
 });
 let Projects = class Projects extends __WEBPACK_IMPORTED_MODULE_6__common___["a" /* ComponentRouted */] {
     constructor() {
