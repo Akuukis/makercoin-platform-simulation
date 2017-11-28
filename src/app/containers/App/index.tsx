@@ -39,8 +39,8 @@ const styles: StyleRulesCallback<AppClasses> = (theme) => ({
     overflow: 'auto',
   },
   content: {
-    minWidth: '680px',
-    maxWidth: '960px',
+    // minWidth: '680px',
+    // maxWidth: '960px',
     margin: 'auto',
     paddingLeft: '8px',
     paddingRight: '8px',
