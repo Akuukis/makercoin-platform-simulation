@@ -77034,7 +77034,7 @@ class CaseStore {
         }
         this.projects
             .filter((project) => project.maturityTick >= this.time.tick)
-            .filter(() => chance.bool({ likelihood: this.config.defaultProb }))
+            .filter(() => chance.bool({ likelihood: this.config.defaultProb * 100 }))
             .forEach(this.poisonProject, this);
         this.projects
             .filter((project) => project.maturityTick === this.time.tick)
