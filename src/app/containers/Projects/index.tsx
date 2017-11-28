@@ -37,17 +37,17 @@ class Projects extends ComponentRouted<IProjectsProps, ProjectsClasses> {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>{'name'}</TableCell>
-              <TableCell>{'birthTick'}</TableCell>
-              <TableCell>{'maturityTick'}</TableCell>
-              <TableCell>{'progress'}</TableCell>
-              <TableCell>{'maturity'}</TableCell>
-              <TableCell>{'discount'}</TableCell>
-              <TableCell>{'size'}</TableCell>
-              <TableCell>{'poisoned'}</TableCell>
-              <TableCell>{'matured'}</TableCell>
-              <TableCell>{'value'}</TableCell>
-              <TableCell>{'status'}</TableCell>
+              <TableCell padding='dense'>{'name'}</TableCell>
+              <TableCell padding='dense'>{'birthTick'}</TableCell>
+              <TableCell padding='dense'>{'maturityTick'}</TableCell>
+              <TableCell padding='dense'>{'progress'}</TableCell>
+              <TableCell padding='dense'>{'maturity'}</TableCell>
+              <TableCell padding='dense'>{'discount'}</TableCell>
+              <TableCell padding='dense'>{'size'}</TableCell>
+              <TableCell padding='dense'>{'poisoned'}</TableCell>
+              <TableCell padding='dense'>{'matured'}</TableCell>
+              <TableCell padding='dense'>{'value'}</TableCell>
+              <TableCell padding='dense'>{'status'}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

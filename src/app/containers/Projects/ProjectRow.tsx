@@ -30,17 +30,17 @@ class ProjectRow extends ComponentRouted<IProjectRowProps, ProjectRowClasses> {
   render() {
     return (
       <TableRow>
-        <TableCell>{this.props.project.name}</TableCell>
-        <TableCell>{this.props.project.birthTick}</TableCell>
-        <TableCell>{this.props.project.maturityTick}</TableCell>
-        <TableCell>{this.props.project.progress}</TableCell>
-        <TableCell>{this.props.project.maturity}</TableCell>
-        <TableCell>{this.props.project.discount}</TableCell>
-        <TableCell>{this.props.project.size}</TableCell>
-        <TableCell>{this.props.project.poisoned ? 'POISONED' : '-'}</TableCell>
-        <TableCell>{this.props.project.matured.toFixed(2)}</TableCell>
-        <TableCell>{this.props.project.value.toFixed(0)}</TableCell>
-        <TableCell>{this.props.project.status}</TableCell>
+        <TableCell padding='dense'        >{this.props.project.name}</TableCell>
+        <TableCell padding='dense' numeric>{this.props.project.birthTick}</TableCell>
+        <TableCell padding='dense' numeric>{this.props.project.maturityTick}</TableCell>
+        <TableCell padding='dense'        >{this.props.project.progress}</TableCell>
+        <TableCell padding='dense'        >{this.props.project.maturity}</TableCell>
+        <TableCell padding='dense' numeric>{this.props.project.discount.toFixed(2)}</TableCell>
+        <TableCell padding='dense' numeric>{this.props.project.size}</TableCell>
+        <TableCell padding='dense'        >{this.props.project.poisoned ? 'POISONED' : '-'}</TableCell>
+        <TableCell padding='dense' numeric>{this.props.project.matured.toFixed(2)}</TableCell>
+        <TableCell padding='dense' numeric>{this.props.project.value.toFixed(0)}</TableCell>
+        <TableCell padding='dense'        >{this.props.project.status}</TableCell>
       </TableRow> 
     );
   }

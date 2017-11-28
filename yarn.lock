@@ -3794,10 +3794,6 @@ postcss@^6.0.1:
     source-map "^0.6.1"
     supports-color "^4.4.0"
 
-prando@^3.0.1:
-  version "3.0.1"
-  resolved "http://npm.factury.co/prando/-/prando-3.0.1.tgz#8fa6d856277fad738e50f3e550b702380ad52d6e"
-
 prepend-http@^1.0.0:
   version "1.0.4"
   resolved "http://npm.factury.co/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"

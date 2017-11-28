@@ -2,16 +2,10 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { action, computed, observable } from 'mobx';
 import { Project } from '../models/Project';
 import { ConfigStore, TimeStore } from './index';
-import Prando from 'prando';
 import { MATURITY, PROGRESS } from '../constants/index';
 import * as Chance from 'chance';
 import { IValueDistribution } from './ConfigStore';
 // import Chance = require('chance');
-const chance = Chance();
-function weighted<T extends IValueDistribution>(values: T[]): T {
-  return chance.weighted(values, values.map((v)=>v.weight));
-}
-
 
 interface CaseEvent {
   name: string;
@@ -25,7 +19,7 @@ export class CaseStore {
   public backer: any;
   public log: any;
 
-  private _random: Prando;
+  private _random: Chance.Chance;
   public get random() { return this._random; }
 
   constructor(
@@ -39,8 +33,12 @@ export class CaseStore {
 
   }
 
+  private weighted<T extends IValueDistribution>(values: T[]): T {
+    return chance.weighted(values, values.map((v)=>v.weight));
+  }
+
   private reset() {
-    this._random = new Prando();
+    this._random = new Chance(/*"foobar"*/);
     this.projects = [];
     this.platform = null;
     this.backer = null;
@@ -56,7 +54,7 @@ export class CaseStore {
     // Check for defaults.
     this.projects
       .filter((project)=>project.maturityTick >= this.time.tick)
-      .filter(()=>this.random.next() < this.config.defaultProb)
+      .filter(()=>chance.bool({likelihood: this.config.defaultProb * 100}))
       .forEach(this.poisonProject, this)
 
     // Check for maturity.
@@ -67,13 +65,14 @@ export class CaseStore {
   }
 
   @action private spawnProject() {
-    const title = this.random.nextString(4);
-    const project = weighted(this.config.projectDist);
+    const name = this.random.name().split(' ')[0];
+    this.log.push({name, event: 'spawn'})
+    const project = this.weighted(this.config.projectDist);
     const discount = project.value;
     const maturity = project.maturity;
     const progress = project.progress;
-    const size = weighted(this.config.idoSizeDist).value;
-    this.projects.push(new Project(this.config, this.time, title, discount, maturity, progress, size));
+    const size = this.weighted(this.config.idoSizeDist).value;
+    this.projects.push(new Project(this.config, this.time, name, discount, maturity, progress, size));
   }
 
   @action private poisonProject(project: Project) {
