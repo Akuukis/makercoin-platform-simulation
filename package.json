@@ -1,6 +1,6 @@
 {
   "name": "makercoin-platform-simulation",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Makercin Platform Simulation",
   "main": "dist/index.js",
   "scripts": {
@@ -12,9 +12,13 @@
     "react",
     "mobx",
     "material-ui",
-    "webpack"
+    "webpack",
+    "simulation"
   ],
   "author": "Kalvis 'Akuukis' Kalniņš <akuukis@kalvis.lv> (https://github.com/Akuukis)",
+  "contributors": [
+    "Viesturs Sosars <vsosars@gmail.com>"
+  ],
   "private": true,
   "license": "UNLICENSED",
   "devDependencies": {
