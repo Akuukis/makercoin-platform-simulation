@@ -37,17 +37,17 @@ class Projects extends ComponentRouted<IProjectsProps, ProjectsClasses> {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell padding='dense'>{'name'}</TableCell>
-              <TableCell padding='dense'>{'birthTick'}</TableCell>
-              <TableCell padding='dense'>{'maturityTick'}</TableCell>
-              <TableCell padding='dense'>{'progress'}</TableCell>
-              <TableCell padding='dense'>{'maturity'}</TableCell>
-              <TableCell padding='dense'>{'discount'}</TableCell>
-              <TableCell padding='dense'>{'size'}</TableCell>
-              <TableCell padding='dense'>{'poisoned'}</TableCell>
-              <TableCell padding='dense'>{'matured'}</TableCell>
-              <TableCell padding='dense'>{'value'}</TableCell>
-              <TableCell padding='dense'>{'status'}</TableCell>
+              <TableCell padding='dense'>{'Name'}</TableCell>
+              <TableCell padding='dense'>{'Start Week'}</TableCell>
+              <TableCell padding='dense'>{'End Week'}</TableCell>
+              <TableCell padding='dense'>{'Stage at offering'}</TableCell>
+              {/* <TableCell padding='dense'>{'maturity'}</TableCell> */}
+              <TableCell padding='dense'>{'Voucher Discount at Offering'}</TableCell>
+              <TableCell padding='dense'>{'Voucher Face Value Issued'}</TableCell>
+              <TableCell padding='dense'>{'Project Health'}</TableCell>
+              <TableCell padding='dense'>{'Project Progress'}</TableCell>
+              <TableCell padding='dense'>{'Voucher Market Value'}</TableCell>
+              <TableCell padding='dense'>{'Current Status'}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

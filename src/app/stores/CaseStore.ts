@@ -72,7 +72,7 @@ export class CaseStore {
     const maturity = project.maturity;
     const progress = project.progress;
     const size = this.weighted(this.config.idoSizeDist).value;
-    this.projects.push(new Project(this.config, this.time, name, discount, maturity, progress, size));
+    this.projects.unshift(new Project(this.config, this.time, name, discount, maturity, progress, size));
   }
 
   @action private poisonProject(project: Project) {
