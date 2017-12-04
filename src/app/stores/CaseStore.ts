@@ -7,6 +7,11 @@ import * as Chance from 'chance';
 import { IValueDistribution } from './ConfigStore';
 // import Chance = require('chance');
 
+import {Backer} from '../models/Backer';
+import {Maker} from '../models/Maker';
+import {Operator} from '../models/Operator';
+import {Provision} from '../models/Provision';
+
 interface CaseEvent {
   name: string;
   event: string;
@@ -15,9 +20,12 @@ interface CaseEvent {
 
 export class CaseStore {
   @observable.shallow public projects: Project[];
-  public platform: any;
-  public backer: any;
-  public log: any;
+  public backer: Backer;
+  public maker: Maker;
+  public operator: Operator;
+  public provision: Provision;
+
+  public log: any[];
 
   private _random: Chance.Chance;
   public get random() { return this._random; }
@@ -40,8 +48,10 @@ export class CaseStore {
   private reset() {
     this._random = new Chance(/*"foobar"*/);
     this.projects = [];
-    this.platform = null;
-    this.backer = null;
+    this.backer = new Backer();
+    this.maker = new Maker();
+    this.operator = new Operator();
+    this.provision = new Provision();
     this.log = [];
   }
 
