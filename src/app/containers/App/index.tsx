@@ -18,11 +18,13 @@ const styles: StyleRulesCallback<AppClasses> = (theme) => ({
   '@media (min-width: 0px)': {
     content: {
       paddingTop: '56px',
+      height: 'calc(100% - 56px)',
     }
   },
   '@media (min-width: 600px)': {
     content: {
       paddingTop: '64px',
+      height: 'calc(100% - 64px)',
     }
   },
   root: {
@@ -74,7 +76,7 @@ class App extends ComponentRouted<IAppProps, AppClasses> {
             <Navigation onRequestClose={()=>this.setDrawer(false)} />
           </Drawer>
           <Topbar openDrawer={()=>this.setDrawer(true)} />
-          <Paper id='content' className={this.props.classes.content}>
+          <Paper className={this.props.classes.content}>
             {this.props.children}
           </Paper>
           {this.renderDevTool()}

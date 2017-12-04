@@ -7,6 +7,7 @@ export class Project {
   readonly birthTick: number;
   readonly maturityTick: number;
   readonly length: number;
+  readonly purchasePrice: number;
 
   @observable public poisoned = false;  // == hidden default.
 
@@ -22,10 +23,11 @@ export class Project {
     this.birthTick = this.time.tick;
     this.length = this.config.maturities[maturity];
     this.maturityTick = this.time.tick + this.length;
+    this.purchasePrice = this.size * (1 - this.discount);
   }
 
   @computed get matured() { return Math.min(1, (this.time.tick - this.birthTick) / this.length ); }
-  @computed get value() { return this.size * (1 - this.discount) + this.size * this.discount * this.matured; }
+  @computed get value() { return this.purchasePrice + this.size * this.discount * this.matured; }
 
   @computed get status(): PROJECT_STATUS {
     if(this.matured < 1) return PROJECT_STATUS.ONGOING;

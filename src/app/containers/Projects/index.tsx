@@ -11,7 +11,6 @@ import TextField from 'material-ui/TextField';
 
 import {ComponentRouted} from '../../common/';
 import { STORE, PROGRESS, MATURITY } from '../../constants/index';
-import { ConfigStore } from '../../stores/ConfigStore';
 import { CaseStore } from '../../stores/index';
 
 import ProjectRow from './ProjectRow';
