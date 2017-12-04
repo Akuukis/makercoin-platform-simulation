@@ -75899,14 +75899,50 @@ class ComponentRouted extends __WEBPACK_IMPORTED_MODULE_0__Component__["a" /* Co
 
 /***/ }),
 
+/***/ "./app/common/Format.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["c"] = dollar;
+/* harmony export (immutable) */ __webpack_exports__["a"] = native;
+/* harmony export (immutable) */ __webpack_exports__["b"] = percent;
+const NO_BRAKE_SPACE = '\u00A0';
+/* unused harmony export NO_BRAKE_SPACE */
+
+function dollar(amount) {
+    const number = isNaN(Number(amount)) ? '-' : Number(amount).toFixed(2);
+    let str = '$' + NO_BRAKE_SPACE + number;
+    for (let i = 0; i < 3; i++)
+        str = str.replace(/(\d)(\d\d\d(\.|\,))/g, '$1,$2');
+    return str;
+}
+function native(amount) {
+    const number = isNaN(Number(amount)) ? '-' : Number(amount).toFixed(0);
+    let str = number + NO_BRAKE_SPACE + 'MKC';
+    for (let i = 0; i < 3; i++)
+        str = str.replace(/(\d)(\d\d\d(\.|\,|\u00A0))/g, '$1,$2');
+    return str;
+}
+function percent(amount) {
+    return `${((amount || 0) * 100).toFixed(0)}${NO_BRAKE_SPACE}%`;
+}
+
+
+/***/ }),
+
 /***/ "./app/common/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Component__ = __webpack_require__("./app/common/Component.ts");
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__Component__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_0__Component__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ComponentRouted__ = __webpack_require__("./app/common/ComponentRouted.ts");
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__ComponentRouted__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Format__ = __webpack_require__("./app/common/Format.ts");
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__Format__["c"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__Format__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__Format__["b"]; });
+
 
 
 
@@ -75920,8 +75956,8 @@ class ComponentRouted extends __WEBPACK_IMPORTED_MODULE_0__Component__["a" /* Co
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NAVIGATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return PROGRESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return MATURITY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return PROJECT_STATUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return MATURITY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PROJECT_STATUS; });
 var STORE;
 (function (STORE) {
     STORE["ROUTER"] = "storeRouter";
@@ -75996,7 +76032,7 @@ const styles = (theme) => ({
         margin: '0em 0.5em',
     }
 });
-let Navigation = class Navigation extends __WEBPACK_IMPORTED_MODULE_4__common___["b" /* Component */] {
+let Navigation = class Navigation extends __WEBPACK_IMPORTED_MODULE_4__common___["e" /* Component */] {
     constructor(props) {
         super(props);
         this.handleClick = (event) => {
@@ -76076,7 +76112,7 @@ const styles = (theme) => ({
         margin: '0em 0.5em',
     }
 });
-let Topbar = class Topbar extends __WEBPACK_IMPORTED_MODULE_8__common___["b" /* Component */] {
+let Topbar = class Topbar extends __WEBPACK_IMPORTED_MODULE_8__common___["e" /* Component */] {
     constructor(props) {
         super(props);
         this.time = this.props[__WEBPACK_IMPORTED_MODULE_9__constants__["a" /* STORE */].TIME];
@@ -76143,11 +76179,13 @@ const styles = (theme) => ({
     '@media (min-width: 0px)': {
         content: {
             paddingTop: '56px',
+            height: 'calc(100% - 56px)',
         }
     },
     '@media (min-width: 600px)': {
         content: {
             paddingTop: '64px',
+            height: 'calc(100% - 64px)',
         }
     },
     root: {
@@ -76186,7 +76224,7 @@ let App = class App extends __WEBPACK_IMPORTED_MODULE_6__common___["a" /* Compon
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Drawer___default.a, { open: this.isDrawerOpen, onRequestClose: () => this.setDrawer(false) },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Navigation__["a" /* default */], { onRequestClose: () => this.setDrawer(false) })),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7__Topbar__["a" /* default */], { openDrawer: () => this.setDrawer(true) }),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default.a, { id: 'content', className: this.props.classes.content }, this.props.children),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default.a, { className: this.props.classes.content }, this.props.children),
             this.renderDevTool()));
     }
 };
@@ -76499,10 +76537,10 @@ let Configuration = class Configuration extends __WEBPACK_IMPORTED_MODULE_9__com
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableRow"], null,
                                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableCell"], { key: 'first' }, ''),
                                 Object.keys(__WEBPACK_IMPORTED_MODULE_10__constants_index__["c" /* PROGRESS */]).map((progress) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableCell"], { key: progress }, progress))))),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableBody"], null, Object.keys(__WEBPACK_IMPORTED_MODULE_10__constants_index__["d" /* MATURITY */]).map((maturity) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableRow"], { key: maturity },
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableBody"], null, Object.keys(__WEBPACK_IMPORTED_MODULE_10__constants_index__["e" /* MATURITY */]).map((maturity) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableRow"], { key: maturity },
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableCell"], { key: 'first' }, maturity),
                             Object.keys(__WEBPACK_IMPORTED_MODULE_10__constants_index__["c" /* PROGRESS */]).map((progress) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7_material_ui_Table__["TableCell"], { key: progress },
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_11__ProjectDist__["a" /* default */], { maturity: __WEBPACK_IMPORTED_MODULE_10__constants_index__["d" /* MATURITY */][maturity], progress: __WEBPACK_IMPORTED_MODULE_10__constants_index__["c" /* PROGRESS */][progress] })))))))))))));
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_11__ProjectDist__["a" /* default */], { maturity: __WEBPACK_IMPORTED_MODULE_10__constants_index__["e" /* MATURITY */][maturity], progress: __WEBPACK_IMPORTED_MODULE_10__constants_index__["c" /* PROGRESS */][progress] })))))))))))));
     }
 };
 __decorate([
@@ -76545,7 +76583,7 @@ Configuration = __decorate([
 
 /***/ }),
 
-/***/ "./app/containers/Dashboard.tsx":
+/***/ "./app/containers/Dashboard/Balance.tsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76556,6 +76594,231 @@ Configuration = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Grid__ = __webpack_require__("../node_modules/material-ui/Grid/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Paper__ = __webpack_require__("../node_modules/material-ui/Paper/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Typography__ = __webpack_require__("../node_modules/material-ui/Typography/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common___ = __webpack_require__("./app/common/index.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+const styles = (theme) => ({
+    root: {
+        padding: '0.5em',
+        backgroundColor: theme.palette.grey[300],
+    }
+});
+let Balance = class Balance extends __WEBPACK_IMPORTED_MODULE_6__common___["a" /* ComponentRouted */] {
+    render() {
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default.a, { className: this.props.classes.root },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { align: 'center', type: 'title' }, this.props.title),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { container: true, spacing: 16 },
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 4 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { type: 'body2' }, "Dollars"),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["d" /* dollar */])(this.props.values.get().dollar)),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 4 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { type: 'body2' }, "Vouchers"),
+                    this.props.values.get().vouchers),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 4 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { type: 'body2' }, "MKC: "),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["c" /* native */])(this.props.values.get().native)))));
+    }
+};
+Balance = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["inject"])(),
+    __WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"]
+], Balance);
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(Balance));
+
+
+/***/ }),
+
+/***/ "./app/containers/Dashboard/NextExitRow.tsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("../node_modules/react/react.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx__ = __webpack_require__("../node_modules/mobx/lib/mobx.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__("../node_modules/mobx-react/index.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles__ = __webpack_require__("../node_modules/material-ui/styles/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Table__ = __webpack_require__("../node_modules/material-ui/Table/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Table__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_colors__ = __webpack_require__("../node_modules/material-ui/colors/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_colors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_colors__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common___ = __webpack_require__("./app/common/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_index__ = __webpack_require__("./app/constants/index.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+const styles = (theme) => ({
+    root: {},
+    success: {
+        backgroundColor: __WEBPACK_IMPORTED_MODULE_5_material_ui_colors__["green"][400],
+    },
+    fail: {
+        backgroundColor: theme.palette.error[400],
+    }
+});
+let NextExitRow = class NextExitRow extends __WEBPACK_IMPORTED_MODULE_6__common___["a" /* ComponentRouted */] {
+    get className() {
+        if (this.props.project.matured < 1) {
+            return undefined;
+        }
+        else if (this.props.project.status === __WEBPACK_IMPORTED_MODULE_7__constants_index__["d" /* PROJECT_STATUS */].EXITED) {
+            return this.props.classes.success;
+        }
+        else {
+            return this.props.classes.fail;
+        }
+    }
+    render() {
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Table__["TableRow"], { className: this.className },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Table__["TableCell"], { padding: 'dense' }, this.props.project.name),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["c" /* native */])(this.props.project.value))));
+    }
+};
+__decorate([
+    __WEBPACK_IMPORTED_MODULE_1_mobx__["computed"],
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], NextExitRow.prototype, "className", null);
+NextExitRow = __decorate([
+    __WEBPACK_IMPORTED_MODULE_2_mobx_react__["observer"]
+], NextExitRow);
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__["withStyles"])(styles)(NextExitRow));
+
+
+/***/ }),
+
+/***/ "./app/containers/Dashboard/NextExits.tsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("../node_modules/react/react.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx__ = __webpack_require__("../node_modules/mobx/lib/mobx.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__("../node_modules/mobx-react/index.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles__ = __webpack_require__("../node_modules/material-ui/styles/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Paper__ = __webpack_require__("../node_modules/material-ui/Paper/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Table__ = __webpack_require__("../node_modules/material-ui/Table/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Typography__ = __webpack_require__("../node_modules/material-ui/Typography/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Typography___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Typography__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common___ = __webpack_require__("./app/common/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_index__ = __webpack_require__("./app/constants/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__NextExitRow__ = __webpack_require__("./app/containers/Dashboard/NextExitRow.tsx");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+const styles = (theme) => ({
+    root: {
+        padding: '0.5em',
+        backgroundColor: theme.palette.grey[300],
+    }
+});
+let NextExits = class NextExits extends __WEBPACK_IMPORTED_MODULE_7__common___["a" /* ComponentRouted */] {
+    constructor() {
+        super(...arguments);
+        this.case = this.props[__WEBPACK_IMPORTED_MODULE_8__constants_index__["a" /* STORE */].CASE];
+        this.time = this.props[__WEBPACK_IMPORTED_MODULE_8__constants_index__["a" /* STORE */].TIME];
+    }
+    get filtered() { return [...this.case.projects].filter((p) => p.maturityTick >= this.time.tick); }
+    get sorted() { return this.filtered.sort((a, b) => a.maturityTick - b.maturityTick); }
+    get trimmed() { return this.sorted.slice(0, Math.min(10, this.sorted.length)); }
+    render() {
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Paper___default.a, { className: this.props.classes.root },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Typography___default.a, { align: 'center', type: 'title' }, "Next Exits"),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table___default.a, null,
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableHead"], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableRow"], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Name'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Voucher Market Value'))),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableBody"], null, this.trimmed
+                    .map((project) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_9__NextExitRow__["a" /* default */], { key: project.name, project: project })))))));
+    }
+};
+__decorate([
+    __WEBPACK_IMPORTED_MODULE_1_mobx__["computed"],
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], NextExits.prototype, "filtered", null);
+__decorate([
+    __WEBPACK_IMPORTED_MODULE_1_mobx__["computed"],
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], NextExits.prototype, "sorted", null);
+__decorate([
+    __WEBPACK_IMPORTED_MODULE_1_mobx__["computed"],
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], NextExits.prototype, "trimmed", null);
+NextExits = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["inject"])(__WEBPACK_IMPORTED_MODULE_8__constants_index__["a" /* STORE */].CASE, __WEBPACK_IMPORTED_MODULE_8__constants_index__["a" /* STORE */].TIME),
+    __WEBPACK_IMPORTED_MODULE_2_mobx_react__["observer"]
+], NextExits);
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__["withStyles"])(styles)(NextExits));
+
+
+/***/ }),
+
+/***/ "./app/containers/Dashboard/TitledNumber.tsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("../node_modules/react/react.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__("../node_modules/mobx-react/index.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__("../node_modules/material-ui/styles/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Paper__ = __webpack_require__("../node_modules/material-ui/Paper/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Paper__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Typography__ = __webpack_require__("../node_modules/material-ui/Typography/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Typography___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Typography__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common___ = __webpack_require__("./app/common/index.ts");
@@ -76572,22 +76835,112 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 const styles = (theme) => ({
-    root: {}
+    root: {
+        padding: '0.5em',
+        backgroundColor: theme.palette.grey[300],
+    }
 });
-let Dashboard = class Dashboard extends __WEBPACK_IMPORTED_MODULE_5__common___["a" /* ComponentRouted */] {
+let TitledNumber = class TitledNumber extends __WEBPACK_IMPORTED_MODULE_5__common___["a" /* ComponentRouted */] {
     render() {
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { container: true, className: this.props.classes.root },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Typography___default.a, { type: 'title' }, "Hello world")),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 }, "Dashboard")));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Paper___default.a, { className: this.props.classes.root },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Typography___default.a, { align: 'center', type: 'title' }, this.props.title),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Typography___default.a, { align: 'center', type: 'display1' }, this.props.value.get())));
+    }
+};
+TitledNumber = __decorate([
+    __WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"]
+], TitledNumber);
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(TitledNumber));
+
+
+/***/ }),
+
+/***/ "./app/containers/Dashboard/index.tsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("../node_modules/react/react.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx__ = __webpack_require__("../node_modules/mobx/lib/mobx.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__("../node_modules/mobx-react/index.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles__ = __webpack_require__("../node_modules/material-ui/styles/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Grid__ = __webpack_require__("../node_modules/material-ui/Grid/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Paper__ = __webpack_require__("../node_modules/material-ui/Paper/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Paper__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Typography__ = __webpack_require__("../node_modules/material-ui/Typography/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Typography___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Typography__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common___ = __webpack_require__("./app/common/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Balance__ = __webpack_require__("./app/containers/Dashboard/Balance.tsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__NextExits__ = __webpack_require__("./app/containers/Dashboard/NextExits.tsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__TitledNumber__ = __webpack_require__("./app/containers/Dashboard/TitledNumber.tsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__constants_index__ = __webpack_require__("./app/constants/index.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+const styles = (theme) => ({
+    root: {
+        padding: '0.5em',
+    }
+});
+let Dashboard = class Dashboard extends __WEBPACK_IMPORTED_MODULE_7__common___["a" /* ComponentRouted */] {
+    constructor() {
+        super(...arguments);
+        this.case = this.props[__WEBPACK_IMPORTED_MODULE_11__constants_index__["a" /* STORE */].CASE];
+        this.time = this.props[__WEBPACK_IMPORTED_MODULE_11__constants_index__["a" /* STORE */].TIME];
+    }
+    render() {
+        const counted = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => {
+            return [...this.case.projects].filter((p) => p.maturityTick >= this.time.tick);
+        });
+        const totalOutstanding = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => {
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__common___["c" /* native */])(counted.get().reduce((sum, p) => sum + p.purchasePrice, 0));
+        });
+        const totalValue = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => {
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__common___["c" /* native */])(counted.get().reduce((sum, p) => sum + p.value, 0));
+        });
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Paper___default.a, { className: this.props.classes.root },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Typography___default.a, { align: 'center', type: 'headline' }, "Dashboard"),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { container: true, spacing: 16 },
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_10__TitledNumber__["a" /* default */], { value: totalOutstanding, title: 'Total Offerings outstanding - purchase price' })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_10__TitledNumber__["a" /* default */], { value: totalValue, title: 'Total Offerings outstanding - current market price' })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Makers', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Backers', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'System', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Operator', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6, md: 4 },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_9__NextExits__["a" /* default */], null)))));
     }
 };
 Dashboard = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["inject"])(),
-    __WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"]
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["inject"])(__WEBPACK_IMPORTED_MODULE_11__constants_index__["a" /* STORE */].CASE, __WEBPACK_IMPORTED_MODULE_11__constants_index__["a" /* STORE */].TIME),
+    __WEBPACK_IMPORTED_MODULE_2_mobx_react__["observer"]
 ], Dashboard);
 ;
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(Dashboard));
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__["withStyles"])(styles)(Dashboard));
 
 
 /***/ }),
@@ -76698,6 +77051,7 @@ Home = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Table__ = __webpack_require__("../node_modules/material-ui/Table/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common___ = __webpack_require__("./app/common/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_index__ = __webpack_require__("./app/constants/index.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -76709,22 +77063,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 const styles = (theme) => ({
     root: {}
 });
+const progressTitle = {
+    [__WEBPACK_IMPORTED_MODULE_5__constants_index__["c" /* PROGRESS */].IDEA]: 'idea only',
+    [__WEBPACK_IMPORTED_MODULE_5__constants_index__["c" /* PROGRESS */].DESIGN]: 'early prototyping',
+    [__WEBPACK_IMPORTED_MODULE_5__constants_index__["c" /* PROGRESS */].PROTOTYPE]: 'late prototyping',
+    [__WEBPACK_IMPORTED_MODULE_5__constants_index__["c" /* PROGRESS */].DFMA]: 'manufacturing',
+};
 let ProjectRow = class ProjectRow extends __WEBPACK_IMPORTED_MODULE_4__common___["a" /* ComponentRouted */] {
     render() {
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableRow"], null,
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense' }, this.props.project.name),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, this.props.project.birthTick),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, this.props.project.maturityTick),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense' }, this.props.project.progress),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense' }, this.props.project.maturity),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, this.props.project.discount.toFixed(2)),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, this.props.project.size),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense' }, this.props.project.poisoned ? 'POISONED' : '-'),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, this.props.project.matured.toFixed(2)),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, this.props.project.value.toFixed(0)),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense' }, progressTitle[this.props.project.progress]),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__common___["b" /* percent */])(this.props.project.discount)),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__common___["c" /* native */])(this.props.project.size)),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense' }, this.props.project.poisoned ? 'failing' : 'on track'),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__common___["b" /* percent */])(this.props.project.matured)),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense', numeric: true }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__common___["c" /* native */])(this.props.project.value)),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Table__["TableCell"], { padding: 'dense' }, this.props.project.status)));
     }
 };
@@ -76784,17 +77144,16 @@ let Projects = class Projects extends __WEBPACK_IMPORTED_MODULE_6__common___["a"
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table___default.a, null,
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableHead"], null,
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableRow"], null,
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'name'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'birthTick'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'maturityTick'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'progress'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'maturity'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'discount'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'size'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'poisoned'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'matured'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'value'),
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'status'))),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Name'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Start Week'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'End Week'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Stage at offering'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Voucher Discount at Offering'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Voucher Face Value Issued'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Project Health'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Project Progress'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Voucher Market Value'),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableCell"], { padding: 'dense' }, 'Current Status'))),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Table__["TableBody"], null, [...this.case.projects].map((project) => (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__ProjectRow__["a" /* default */], { key: project.name, project: project })))))));
     }
 };
@@ -76885,6 +77244,42 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom__["render"](__WEBPACK_IMPORTED_MODULE_0_re
 
 /***/ }),
 
+/***/ "./app/models/Backer.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Backer {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Backer;
+
+
+
+/***/ }),
+
+/***/ "./app/models/Maker.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Maker {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Maker;
+
+
+
+/***/ }),
+
+/***/ "./app/models/Operator.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Operator {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Operator;
+
+
+
+/***/ }),
+
 /***/ "./app/models/Project.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -76915,15 +77310,16 @@ class Project {
         this.birthTick = this.time.tick;
         this.length = this.config.maturities[maturity];
         this.maturityTick = this.time.tick + this.length;
+        this.purchasePrice = this.size * (1 - this.discount);
     }
     get matured() { return Math.min(1, (this.time.tick - this.birthTick) / this.length); }
-    get value() { return this.size * (1 - this.discount) + this.size * this.discount * this.matured; }
+    get value() { return this.purchasePrice + this.size * this.discount * this.matured; }
     get status() {
         if (this.matured < 1)
-            return __WEBPACK_IMPORTED_MODULE_1__constants__["e" /* PROJECT_STATUS */].ONGOING;
+            return __WEBPACK_IMPORTED_MODULE_1__constants__["d" /* PROJECT_STATUS */].ONGOING;
         if (this.poisoned)
-            return __WEBPACK_IMPORTED_MODULE_1__constants__["e" /* PROJECT_STATUS */].DEFAULTED;
-        return __WEBPACK_IMPORTED_MODULE_1__constants__["e" /* PROJECT_STATUS */].EXITED;
+            return __WEBPACK_IMPORTED_MODULE_1__constants__["d" /* PROJECT_STATUS */].DEFAULTED;
+        return __WEBPACK_IMPORTED_MODULE_1__constants__["d" /* PROJECT_STATUS */].EXITED;
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Project;
@@ -76951,6 +77347,18 @@ __decorate([
 
 /***/ }),
 
+/***/ "./app/models/Provision.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Provision {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Provision;
+
+
+
+/***/ }),
+
 /***/ "./app/routes.tsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -76963,7 +77371,7 @@ __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__containers_App__ = __webpack_require__("./app/containers/App/index.tsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__containers_Home__ = __webpack_require__("./app/containers/Home.tsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__containers_Configuration__ = __webpack_require__("./app/containers/Configuration/index.tsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__containers_Dashboard__ = __webpack_require__("./app/containers/Dashboard.tsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__containers_Dashboard__ = __webpack_require__("./app/containers/Dashboard/index.tsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__containers_Projects__ = __webpack_require__("./app/containers/Projects/index.tsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__containers_History__ = __webpack_require__("./app/containers/History.tsx");
 
@@ -76997,6 +77405,10 @@ const routes = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_I
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_Project__ = __webpack_require__("./app/models/Project.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chance__ = __webpack_require__("../node_modules/chance/chance.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chance___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_chance__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_Backer__ = __webpack_require__("./app/models/Backer.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_Maker__ = __webpack_require__("./app/models/Maker.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_Operator__ = __webpack_require__("./app/models/Operator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_Provision__ = __webpack_require__("./app/models/Provision.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -77006,6 +77418,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
+
+
 
 
 
@@ -77024,8 +77440,10 @@ class CaseStore {
     reset() {
         this._random = new __WEBPACK_IMPORTED_MODULE_2_chance__();
         this.projects = [];
-        this.platform = null;
-        this.backer = null;
+        this.backer = new __WEBPACK_IMPORTED_MODULE_3__models_Backer__["a" /* Backer */]();
+        this.maker = new __WEBPACK_IMPORTED_MODULE_4__models_Maker__["a" /* Maker */]();
+        this.operator = new __WEBPACK_IMPORTED_MODULE_5__models_Operator__["a" /* Operator */]();
+        this.provision = new __WEBPACK_IMPORTED_MODULE_6__models_Provision__["a" /* Provision */]();
         this.log = [];
     }
     next() {
@@ -77048,7 +77466,7 @@ class CaseStore {
         const maturity = project.maturity;
         const progress = project.progress;
         const size = this.weighted(this.config.idoSizeDist).value;
-        this.projects.push(new __WEBPACK_IMPORTED_MODULE_1__models_Project__["a" /* Project */](this.config, this.time, name, discount, maturity, progress, size));
+        this.projects.unshift(new __WEBPACK_IMPORTED_MODULE_1__models_Project__["a" /* Project */](this.config, this.time, name, discount, maturity, progress, size));
     }
     poisonProject(project) {
         this.log.push({ name: project.name, event: 'poison' });
@@ -77106,30 +77524,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 class ConfigStore {
     constructor() {
         this.projectDist = [
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week00, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week10, weight: 4, value: 0.05 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week20, weight: 4, value: 0.10 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week30, weight: 4, value: 0.15 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week40, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week50, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week00, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week10, weight: 3, value: 0.15 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week20, weight: 3, value: 0.20 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week30, weight: 3, value: 0.25 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week40, weight: 3, value: 0.30 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week50, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week00, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week10, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week20, weight: 3, value: 0.35 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week30, weight: 3, value: 0.40 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week40, weight: 3, value: 0.45 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week50, weight: 3, value: 0.50 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week00, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week10, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week20, weight: 0, value: 0 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week30, weight: 4, value: 0.60 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week40, weight: 4, value: 0.65 },
-            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week50, weight: 4, value: 0.70 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week00, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week10, weight: 4, value: 0.05 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week20, weight: 4, value: 0.10 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week30, weight: 4, value: 0.15 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week40, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DFMA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week50, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week00, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week10, weight: 3, value: 0.15 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week20, weight: 3, value: 0.20 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week30, weight: 3, value: 0.25 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week40, weight: 3, value: 0.30 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].PROTOTYPE, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week50, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week00, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week10, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week20, weight: 3, value: 0.35 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week30, weight: 3, value: 0.40 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week40, weight: 3, value: 0.45 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].DESIGN, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week50, weight: 3, value: 0.50 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week00, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week10, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week20, weight: 0, value: 0 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week30, weight: 4, value: 0.60 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week40, weight: 4, value: 0.65 },
+            { progress: __WEBPACK_IMPORTED_MODULE_0__constants_index__["c" /* PROGRESS */].IDEA, maturity: __WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week50, weight: 4, value: 0.70 },
         ];
         this.idoSizeDist = [
             { weight: 26, value: 50000 },
@@ -77139,12 +77557,12 @@ class ConfigStore {
             { weight: 1, value: 1000000 },
         ];
         this.maturities = {
-            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week00]: 0,
-            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week10]: 10,
-            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week20]: 20,
-            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week30]: 30,
-            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week40]: 40,
-            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["d" /* MATURITY */].week50]: 50,
+            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week00]: 0,
+            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week10]: 10,
+            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week20]: 20,
+            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week30]: 30,
+            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week40]: 40,
+            [__WEBPACK_IMPORTED_MODULE_0__constants_index__["e" /* MATURITY */].week50]: 50,
         };
         this.defaultProb = 0.007;
         this.spawnRate = 1;
