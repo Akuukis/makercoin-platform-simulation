@@ -22,7 +22,7 @@ export class TimeStore {
         this._timerSubject.asObservable().switch(),
         this._stepperSubject.asObservable(),
       )
-      .do(action(()=>console.log(this._tick) || this._tick++))
+      .do(action('tick', ()=>console.log(this._tick) || this._tick++))
       .map(()=>this.tick)
       .publish();
     this.stop();

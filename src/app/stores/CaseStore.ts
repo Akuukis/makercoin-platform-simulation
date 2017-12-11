@@ -13,6 +13,11 @@ import {Operator} from '../models/Operator';
 import {Provision} from '../models/Provision';
 import { IAgent } from '../common/Agent';
 
+const transfer = (from: IAgent, to: IAgent, what: keyof IAgent, amount: number) => {
+  from[what] -= amount;
+  to[what] += amount;
+}
+
 interface CaseEvent {
   name: string;
   event: string;
@@ -84,11 +89,6 @@ export class CaseStore {
     const progress = characteristics.progress;
     const size = this.weighted(this.config.idoSizeDist).value;
 
-    const transfer = (from: IAgent, to: IAgent, what: keyof IAgent, amount: number) => {
-      from[what] -= amount;
-      to[what] += amount;
-    }
-
     const project = new Project(this.config, this.time, name, discount, maturity, progress, size);
     transfer(this.backer   , this.provision, 'dollars' , project.size);
     transfer(this.provision, this.backer   , 'natives' , project.size);
@@ -98,26 +98,37 @@ export class CaseStore {
 
     transfer(this.maker    , this.provision, 'natives' , project.purchasePrice);
     transfer(this.provision, this.maker    , 'dollars' , project.purchasePrice * (1 - this.config.operatingFee));
-    transfer(this.provision, this.operator , 'dollars' , project.purchasePrice * this.config.operatingFee);
+    transfer(this.provision, this.operator , 'natives' , project.purchasePrice * this.config.operatingFee);
 
     this.projects.unshift(project);
+    console.info(project);
   }
 
   @action private poisonProject(project: Project) {
     this.log.push({name: project.name, event: 'poison'})
     project.poisoned = true;
+    console.info(project);
   }
 
   @action private matureProject(project: Project) {
     this.log.push({name: project.name, event: 'mature'})
     if(!project.poisoned) {
-      // Project Exit
+      // Project Exits
+      transfer(this.backer, this.maker , 'vouchers', project.size);
+      transfer(this.maker , this.backer, 'dollars' , project.size * this.config.operatingFee);
 
 
     } else {
       // Project Defaults
+      this.backer.vouchers -= project.size;  // write-off
+      this.maker.dollars -= project.size * this.config.operatingFee;  // write-off
+      this.maker.vouchers += project.size;  // write-off
+
+      transfer(this.backer   , this.provision, 'natives', project.purchasePrice);
+      transfer(this.provision, this.backer   , 'dollars', project.purchasePrice);
 
     }
+    console.info(project);
   }
 
 }
