@@ -75903,18 +75903,21 @@ class ComponentRouted extends __WEBPACK_IMPORTED_MODULE_0__Component__["a" /* Co
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["d"] = number;
 /* harmony export (immutable) */ __webpack_exports__["c"] = dollar;
 /* harmony export (immutable) */ __webpack_exports__["a"] = native;
 /* harmony export (immutable) */ __webpack_exports__["b"] = percent;
 const NO_BRAKE_SPACE = '\u00A0';
 /* unused harmony export NO_BRAKE_SPACE */
 
-function dollar(amount) {
-    const number = isNaN(Number(amount)) ? '-' : Number(amount).toFixed(2);
-    let str = '$' + NO_BRAKE_SPACE + number;
+function number(amount) {
+    let str = isNaN(Number(amount)) ? '-' : Number(amount).toFixed(0);
     for (let i = 0; i < 3; i++)
-        str = str.replace(/(\d)(\d\d\d(\.|\,))/g, '$1,$2');
+        str = str.replace(/(\d)(\d\d\d(\.|\,|$))/g, '$1,$2');
     return str;
+}
+function dollar(amount) {
+    return '$' + NO_BRAKE_SPACE + number(amount);
 }
 function native(amount) {
     const number = isNaN(Number(amount)) ? '-' : Number(amount).toFixed(0);
@@ -75935,12 +75938,13 @@ function percent(amount) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Component__ = __webpack_require__("./app/common/Component.ts");
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_0__Component__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_0__Component__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ComponentRouted__ = __webpack_require__("./app/common/ComponentRouted.ts");
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__ComponentRouted__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Format__ = __webpack_require__("./app/common/Format.ts");
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__Format__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__Format__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_2__Format__["d"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__Format__["b"]; });
 
 
@@ -76032,7 +76036,7 @@ const styles = (theme) => ({
         margin: '0em 0.5em',
     }
 });
-let Navigation = class Navigation extends __WEBPACK_IMPORTED_MODULE_4__common___["e" /* Component */] {
+let Navigation = class Navigation extends __WEBPACK_IMPORTED_MODULE_4__common___["f" /* Component */] {
     constructor(props) {
         super(props);
         this.handleClick = (event) => {
@@ -76112,7 +76116,7 @@ const styles = (theme) => ({
         margin: '0em 0.5em',
     }
 });
-let Topbar = class Topbar extends __WEBPACK_IMPORTED_MODULE_8__common___["e" /* Component */] {
+let Topbar = class Topbar extends __WEBPACK_IMPORTED_MODULE_8__common___["f" /* Component */] {
     constructor(props) {
         super(props);
         this.time = this.props[__WEBPACK_IMPORTED_MODULE_9__constants__["a" /* STORE */].TIME];
@@ -76521,6 +76525,7 @@ let Configuration = class Configuration extends __WEBPACK_IMPORTED_MODULE_9__com
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6_material_ui_Typography___default.a, { align: 'center', type: 'headline' }, "Global constants"),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { container: true, spacing: 0, className: this.props.classes.root },
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12 }, this.renderValueInput('spawnRate', this.config.spawnRate, this.handleSpawnRate)),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12 }, this.renderPercentInput('Default Probability (per week)', this.config.defaultProb, this.handleDefaultProb)),
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12 }, this.renderPercentInput('operatingFee', this.config.operatingFee, this.handleOperatingFee)),
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12 }, this.renderPercentInput('exchangeFee', this.config.exchangeFee, this.handleExchangeFee)),
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12 }, this.renderPercentInput('repurchaseFee', this.config.repurchaseFee, this.handleRepurchaseFee))))),
@@ -76625,13 +76630,13 @@ let Balance = class Balance extends __WEBPACK_IMPORTED_MODULE_6__common___["a" /
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { container: true, spacing: 16 },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 4 },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { type: 'body2' }, "Dollars"),
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["d" /* dollar */])(this.props.values.get().dollar)),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["d" /* dollar */])(this.props.values.dollars)),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 4 },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { type: 'body2' }, "Vouchers"),
-                    this.props.values.get().vouchers),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["e" /* number */])(this.props.values.vouchers)),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, { item: true, xs: 12, sm: 4 },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5_material_ui_Typography___default.a, { type: 'body2' }, "MKC: "),
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["c" /* native */])(this.props.values.get().native)))));
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common___["c" /* native */])(this.props.values.natives)))));
     }
 };
 Balance = __decorate([
@@ -76924,13 +76929,13 @@ let Dashboard = class Dashboard extends __WEBPACK_IMPORTED_MODULE_7__common___["
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_10__TitledNumber__["a" /* default */], { value: totalValue, title: 'Total Offerings outstanding - current market price' })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Makers', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Makers', values: this.case.maker })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Backers', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Backers', values: this.case.backer })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'System', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'System', values: this.case.provision })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6 },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Operator', values: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["computed"])(() => ({ dollar: 0, native: 0, vouchers: 0 })) })),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Balance__["a" /* default */], { title: 'Operator', values: this.case.operator })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, { item: true, xs: 12, sm: 6, md: 4 },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_9__NextExits__["a" /* default */], null)))));
     }
@@ -77244,11 +77249,58 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom__["render"](__WEBPACK_IMPORTED_MODULE_0_re
 
 /***/ }),
 
+/***/ "./app/models/Agent.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mobx__ = __webpack_require__("../node_modules/mobx/lib/mobx.module.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+class Agent {
+    constructor() {
+        this.dollars = 0;
+        this.vouchers = 0;
+        this.natives = 0;
+    }
+    reset() {
+        this.dollars = 0;
+        this.natives = 0;
+        this.vouchers = 0;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Agent;
+
+__decorate([
+    __WEBPACK_IMPORTED_MODULE_0_mobx__["observable"],
+    __metadata("design:type", Number)
+], Agent.prototype, "dollars", void 0);
+__decorate([
+    __WEBPACK_IMPORTED_MODULE_0_mobx__["observable"],
+    __metadata("design:type", Number)
+], Agent.prototype, "vouchers", void 0);
+__decorate([
+    __WEBPACK_IMPORTED_MODULE_0_mobx__["observable"],
+    __metadata("design:type", Number)
+], Agent.prototype, "natives", void 0);
+
+
+/***/ }),
+
 /***/ "./app/models/Backer.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Backer {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Agent__ = __webpack_require__("./app/models/Agent.ts");
+
+class Backer extends __WEBPACK_IMPORTED_MODULE_0__Agent__["a" /* Agent */] {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Backer;
 
@@ -77260,7 +77312,9 @@ class Backer {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Maker {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Agent__ = __webpack_require__("./app/models/Agent.ts");
+
+class Maker extends __WEBPACK_IMPORTED_MODULE_0__Agent__["a" /* Agent */] {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Maker;
 
@@ -77272,7 +77326,9 @@ class Maker {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Operator {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Agent__ = __webpack_require__("./app/models/Agent.ts");
+
+class Operator extends __WEBPACK_IMPORTED_MODULE_0__Agent__["a" /* Agent */] {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Operator;
 
@@ -77351,7 +77407,9 @@ __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Provision {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Agent__ = __webpack_require__("./app/models/Agent.ts");
+
+class Provision extends __WEBPACK_IMPORTED_MODULE_0__Agent__["a" /* Agent */] {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Provision;
 
@@ -77425,10 +77483,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+const transfer = (from, to, what, amount) => {
+    from[what] -= amount;
+    to[what] += amount;
+};
 class CaseStore {
     constructor(time, config) {
         this.time = time;
         this.config = config;
+        this.backer = new __WEBPACK_IMPORTED_MODULE_3__models_Backer__["a" /* Backer */]();
+        this.maker = new __WEBPACK_IMPORTED_MODULE_4__models_Maker__["a" /* Maker */]();
+        this.operator = new __WEBPACK_IMPORTED_MODULE_5__models_Operator__["a" /* Operator */]();
+        this.provision = new __WEBPACK_IMPORTED_MODULE_6__models_Provision__["a" /* Provision */]();
         this.reset();
         time.reset$.subscribe(() => this.reset());
         time.tick$.subscribe((tick) => this.next());
@@ -77440,10 +77506,10 @@ class CaseStore {
     reset() {
         this._random = new __WEBPACK_IMPORTED_MODULE_2_chance__();
         this.projects = [];
-        this.backer = new __WEBPACK_IMPORTED_MODULE_3__models_Backer__["a" /* Backer */]();
-        this.maker = new __WEBPACK_IMPORTED_MODULE_4__models_Maker__["a" /* Maker */]();
-        this.operator = new __WEBPACK_IMPORTED_MODULE_5__models_Operator__["a" /* Operator */]();
-        this.provision = new __WEBPACK_IMPORTED_MODULE_6__models_Provision__["a" /* Provision */]();
+        this.backer.reset();
+        this.maker.reset();
+        this.operator.reset();
+        this.provision.reset();
         this.log = [];
     }
     next() {
@@ -77461,19 +77527,41 @@ class CaseStore {
     spawnProject() {
         const name = this.random.name().split(' ')[0];
         this.log.push({ name, event: 'spawn' });
-        const project = this.weighted(this.config.projectDist);
-        const discount = project.value;
-        const maturity = project.maturity;
-        const progress = project.progress;
+        const characteristics = this.weighted(this.config.projectDist);
+        const discount = characteristics.value;
+        const maturity = characteristics.maturity;
+        const progress = characteristics.progress;
         const size = this.weighted(this.config.idoSizeDist).value;
-        this.projects.unshift(new __WEBPACK_IMPORTED_MODULE_1__models_Project__["a" /* Project */](this.config, this.time, name, discount, maturity, progress, size));
+        const project = new __WEBPACK_IMPORTED_MODULE_1__models_Project__["a" /* Project */](this.config, this.time, name, discount, maturity, progress, size);
+        transfer(this.backer, this.provision, 'dollars', project.size);
+        transfer(this.provision, this.backer, 'natives', project.size);
+        transfer(this.backer, this.maker, 'natives', project.purchasePrice);
+        transfer(this.maker, this.backer, 'vouchers', project.size);
+        transfer(this.maker, this.provision, 'natives', project.purchasePrice);
+        transfer(this.provision, this.maker, 'dollars', project.purchasePrice * (1 - this.config.operatingFee));
+        transfer(this.provision, this.operator, 'natives', project.purchasePrice * this.config.operatingFee);
+        this.projects.unshift(project);
+        console.info(project);
     }
     poisonProject(project) {
         this.log.push({ name: project.name, event: 'poison' });
         project.poisoned = true;
+        console.info(project);
     }
     matureProject(project) {
         this.log.push({ name: project.name, event: 'mature' });
+        if (!project.poisoned) {
+            transfer(this.backer, this.maker, 'vouchers', project.size);
+            transfer(this.maker, this.backer, 'dollars', project.size * this.config.operatingFee);
+        }
+        else {
+            this.backer.vouchers -= project.size;
+            this.maker.dollars -= project.size * this.config.operatingFee;
+            this.maker.vouchers += project.size;
+            transfer(this.backer, this.provision, 'natives', project.purchasePrice);
+            transfer(this.provision, this.backer, 'dollars', project.purchasePrice);
+        }
+        console.info(project);
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CaseStore;
@@ -77658,7 +77746,7 @@ class TimeStore {
         this._timerSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["Subject"]();
         this._stepperSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["Subject"]();
         const _tick$ = __WEBPACK_IMPORTED_MODULE_0_rxjs__["Observable"].merge(this._timerSubject.asObservable().switch(), this._stepperSubject.asObservable())
-            .do(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["action"])(() => console.log(this._tick) || this._tick++))
+            .do(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mobx__["action"])('tick', () => console.log(this._tick) || this._tick++))
             .map(() => this.tick)
             .publish();
         this.stop();
