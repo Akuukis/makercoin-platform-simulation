@@ -97,6 +97,9 @@ class Configuration extends ComponentRouted<IConfigurationProps, ConfigurationCl
                 {this.renderValueInput(  'spawnRate'    , this.config.spawnRate    , this.handleSpawnRate    )}
               </Grid>
               <Grid item xs={12}>
+                {this.renderPercentInput('Default Probability (per week)', this.config.defaultProb, this.handleDefaultProb)}
+              </Grid>
+              <Grid item xs={12}>
                 {this.renderPercentInput('operatingFee' , this.config.operatingFee , this.handleOperatingFee )}
               </Grid>
               <Grid item xs={12}>
