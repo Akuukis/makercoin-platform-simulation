@@ -7,13 +7,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-import {ComponentRouted, dollar, native} from '../../common/';
-
-export interface IBalanceValues {
-  natives: number,
-  dollars: number,
-  vouchers: number,
-}
+import {ComponentRouted, dollar, IAgent, native, number} from '../../common/';
 
 export type BalanceClasses = 'root';
 const styles: StyleRulesCallback<BalanceClasses> = (theme) => ({
@@ -25,7 +19,7 @@ const styles: StyleRulesCallback<BalanceClasses> = (theme) => ({
 
 interface IBalanceProps {
   title: string;
-  values: IBalanceValues;
+  values: IAgent;
 }
 
 @inject()
@@ -43,7 +37,7 @@ class Balance extends ComponentRouted<IBalanceProps, BalanceClasses> {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography type={'body2'}>Vouchers</Typography>
-            {this.props.values.vouchers}
+            {number(this.props.values.vouchers)}
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography type={'body2'}>MKC: </Typography>

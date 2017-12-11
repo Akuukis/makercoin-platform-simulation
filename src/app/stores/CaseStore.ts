@@ -11,6 +11,7 @@ import {Backer} from '../models/Backer';
 import {Maker} from '../models/Maker';
 import {Operator} from '../models/Operator';
 import {Provision} from '../models/Provision';
+import { IAgent } from '../common/Agent';
 
 interface CaseEvent {
   name: string;
@@ -20,10 +21,10 @@ interface CaseEvent {
 
 export class CaseStore {
   @observable.shallow public projects: Project[];
-  public backer: Backer;
-  public maker: Maker;
-  public operator: Operator;
-  public provision: Provision;
+  public backer: Backer = new Backer();
+  public maker: Maker = new Maker();
+  public operator: Operator = new Operator();
+  public provision: Provision = new Provision();
 
   public log: any[];
 
@@ -48,10 +49,10 @@ export class CaseStore {
   private reset() {
     this._random = new Chance(/*"foobar"*/);
     this.projects = [];
-    this.backer = new Backer();
-    this.maker = new Maker();
-    this.operator = new Operator();
-    this.provision = new Provision();
+    this.backer.reset();
+    this.maker.reset();
+    this.operator.reset();
+    this.provision.reset();
     this.log = [];
   }
 
@@ -77,12 +78,29 @@ export class CaseStore {
   @action private spawnProject() {
     const name = this.random.name().split(' ')[0];
     this.log.push({name, event: 'spawn'})
-    const project = this.weighted(this.config.projectDist);
-    const discount = project.value;
-    const maturity = project.maturity;
-    const progress = project.progress;
+    const characteristics = this.weighted(this.config.projectDist);
+    const discount = characteristics.value;
+    const maturity = characteristics.maturity;
+    const progress = characteristics.progress;
     const size = this.weighted(this.config.idoSizeDist).value;
-    this.projects.unshift(new Project(this.config, this.time, name, discount, maturity, progress, size));
+
+    const transfer = (from: IAgent, to: IAgent, what: keyof IAgent, amount: number) => {
+      from[what] -= amount;
+      to[what] += amount;
+    }
+
+    const project = new Project(this.config, this.time, name, discount, maturity, progress, size);
+    transfer(this.backer   , this.provision, 'dollars' , project.size);
+    transfer(this.provision, this.backer   , 'natives' , project.size);
+
+    transfer(this.backer   , this.maker    , 'natives' , project.purchasePrice);
+    transfer(this.maker    , this.backer   , 'vouchers', project.size);
+
+    transfer(this.maker    , this.provision, 'natives' , project.purchasePrice);
+    transfer(this.provision, this.maker    , 'dollars' , project.purchasePrice * (1 - this.config.operatingFee));
+    transfer(this.provision, this.operator , 'dollars' , project.purchasePrice * this.config.operatingFee);
+
+    this.projects.unshift(project);
   }
 
   @action private poisonProject(project: Project) {
@@ -92,6 +110,14 @@ export class CaseStore {
 
   @action private matureProject(project: Project) {
     this.log.push({name: project.name, event: 'mature'})
+    if(!project.poisoned) {
+      // Project Exit
+
+
+    } else {
+      // Project Defaults
+
+    }
   }
 
 }
