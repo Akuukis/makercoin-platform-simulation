@@ -54,16 +54,16 @@ class Dashboard extends ComponentRouted<IDashboardProps, DashboardClasses> {
             <TitledNumber value={totalValue} title='Total Offerings outstanding - current market price'/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Balance title='Makers' values={computed(()=>({dollar:0, native: 0, vouchers: 0}))} />
+            <Balance title='Makers' values={this.case.maker} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Balance title='Backers' values={computed(()=>({dollar:0, native: 0, vouchers: 0}))} />
+            <Balance title='Backers' values={this.case.backer} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Balance title='System' values={computed(()=>({dollar:0, native: 0, vouchers: 0}))} />
+            <Balance title='System' values={this.case.provision} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Balance title='Operator' values={computed(()=>({dollar:0, native: 0, vouchers: 0}))} />
+            <Balance title='Operator' values={this.case.operator} />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <NextExits />

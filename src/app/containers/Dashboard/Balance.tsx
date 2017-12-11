@@ -8,7 +8,12 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
 import {ComponentRouted, dollar, native} from '../../common/';
-import {IBalanceValues} from './common';
+
+export interface IBalanceValues {
+  natives: number,
+  dollars: number,
+  vouchers: number,
+}
 
 export type BalanceClasses = 'root';
 const styles: StyleRulesCallback<BalanceClasses> = (theme) => ({
@@ -20,7 +25,7 @@ const styles: StyleRulesCallback<BalanceClasses> = (theme) => ({
 
 interface IBalanceProps {
   title: string;
-  values: IComputedValue<IBalanceValues>;
+  values: IBalanceValues;
 }
 
 @inject()
@@ -34,15 +39,15 @@ class Balance extends ComponentRouted<IBalanceProps, BalanceClasses> {
         <Grid container spacing={16}>
           <Grid item xs={12} sm={4}>
             <Typography type={'body2'}>Dollars</Typography>
-            {dollar(this.props.values.get().dollar)}
+            {dollar(this.props.values.dollars)}
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography type={'body2'}>Vouchers</Typography>
-            {this.props.values.get().vouchers}
+            {this.props.values.vouchers}
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography type={'body2'}>MKC: </Typography>
-            {native(this.props.values.get().native)}
+            {native(this.props.values.natives)}
           </Grid>
         </Grid>
       </Paper>
